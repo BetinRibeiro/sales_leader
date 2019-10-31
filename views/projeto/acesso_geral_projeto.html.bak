@@ -1,0 +1,56 @@
+{{extend 'layout.html'}}
+<p>
+    Acesso Geral ao Projeto de venda {{=projeto.nome}}
+</p>
+<div>
+    
+<ul>
+    <p>
+        Dados da Viagem
+    </p>
+    <li><a href="{{=URL('mercadoria','listar_merc', args=projeto.id)}}" class="text-dark">Mercadoria da Viagem <br>
+        (+)<b>R$ {{=projeto.total_preco_envio}}0</b> </a></li>
+    
+    <li><a href="{{=URL('equipe','listar_vendedor', args=projeto.id)}}" class="text-dark">Venda à Praso <br>
+        (-) R$ {{=projeto.total_venda}}0</a></li>    
+    <li><a>Estoque/Retorno</a></li>    
+    <li><a>Venda à Vista</a></li>
+    
+</ul>
+</div>
+<div>
+    <p>
+        Dinheiro da Viagem
+    </p>
+    <ul>
+        <li><a>Adiantamento</a></li>
+        <li><a>Entradas</a></li>
+        <li><a>Venda à Vista</a></li>
+        <li>Total = </li>
+    </ul>
+</div>
+<div>
+    <p>
+        Dinheiro Apresentado
+    </p>
+    <ul>
+        <li><a>Despesas</a></li>
+        <li><a>Caderno Vendedores</a></li>
+        <li><a>Caderno Funcionarios</a></li>
+        <li>Dinheiro em Caixa</li>
+        
+        <li>Total - </li>
+    </ul>
+</div>
+<div>
+    <p>
+       Comissão do Chefe
+    </p>
+    <ul>
+        <li><a>Venda </a></li>
+        <li><a>Comissão</a></li>
+        <li><a>Diferença</a></li>
+        
+        <li>Total - </li>
+    </ul>
+</div>
