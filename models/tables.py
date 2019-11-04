@@ -68,13 +68,13 @@ db.define_table('funcionario',
 db.define_table('vendedor',
 				Field('projeto','reference projeto', label='Equipe', writable=True, readable=True),
 				Field('nome_vendedor', 'string'),
-				Field('vale_saida', 'double', writable=False, readable=False, notnull=True, default=0),
+				Field('vale_saida', 'double', notnull=True, default=0),
 				Field('vale_caderno', 'double', writable=False, readable=False, notnull=True, default=0),
 				Field('vendapraso', 'double', writable=False, readable=False, notnull=True, default=0),
                 Field('vendavista', 'double', writable=False, readable=False, notnull=True, default=0),
 				Field('entradas_venda', 'double', writable=False, readable=False, notnull=True, default=0),
 				Field('quant_fichas', 'integer', writable=False, readable=False, notnull=True, default=0),
-				Field('comissao_venda', 'double', writable=False, readable=False, notnull=True, default=7),
+				Field('comissao_venda', 'double',label='% Comissão', notnull=True, default=7),
 				auth.signature)
 
 

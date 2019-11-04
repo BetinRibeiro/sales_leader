@@ -1,0 +1,46 @@
+{{extend 'layout.html'}}
+<p>Estoque da mercadoria {{=projeto.nome}}</p>
+
+<a class="btn btn-primary" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Relatorio</a>
+<div class="table-responsive">
+  <table class="table table-striped table-borderless">
+            <thead>
+              <tr>
+                <th>Quant</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+				{{total_preco_retorno=0.0}}
+				{{quant_retorno=0.0}}
+				{{vr=0.0}}
+				{{for row in rows:}}
+              <tr>
+
+                <th>{{=row.quant_pcs_retorno}}</th>
+                  <th><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></th>
+				<th>{{=row.preco_unitario}}0</th>
+                  
+                    {{vr=row.quant_pcs_retorno*row.preco_unitario}}
+                  
+				<th>{{=vr}}0</th>
+                  
+                    {{total_preco_retorno=total_preco_retorno+vr}}
+                    {{quant_retorno+=row.quant_pcs_retorno}}
+              </tr>
+              {{pass}}
+				 <tr>
+
+                <th>{{= quant_retorno }}0</th>
+                     <th>Total</th>
+                     <th>--></th>
+                     <th>{{=total_preco_retorno}}</th>
+
+              </tr>
+            </tbody>
+          </table>
+                     {{projeto.total_quant_pcs_retorno=quant_retorno}}
+                     {{projeto.total_preco_retorno=total_preco_retorno}}
+                        {{projeto.update_record()}}

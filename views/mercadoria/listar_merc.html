@@ -1,5 +1,6 @@
 {{extend 'layout.html'}}
 <p>Lista Mercadoria de Envio Para venda - {{=projeto.nome_chefe}}</p>
+<a class="btn btn-primary" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Relatorio</a>
 <a class="btn btn-primary"  href="{{=URL('inserir_merc', args=projeto.id)}}">Enviar Produto</a>
 <br><br>
 <div class="table-responsive">
@@ -16,10 +17,18 @@
 				{{total_preco_mercadoria=0.0}}
 				{{total_custo_mercadoria=0.0}}
 				{{total_quant=0.0}}
+				{{retorno=0.0}}
 				{{for row in rows:}}
               <tr>
 
                 <th>{{=row.quant_pcs_enviada}}</th>
+                  {{if row.quant_pcs_retorno==0:}}
+                  
+                  {{row.quant_pcs_retorno=row.quant_pcs_enviada}}
+                  {{row.update_record()}}
+                  
+                  {{pass}}
+                           {{retorno+=row.quant_pcs_retorno*row.preco_unitario}}                      
                   <th><a href="{{=URL('alterar_merc', args=row.id)}}">{{=row.descricao}}</a></th>
 				<th>{{=row.preco_unitario}}</th>
 				{{total_preco=row.quant_pcs_enviada*row.preco_unitario}}
@@ -36,6 +45,7 @@
 				<th>{{=total_preco_mercadoria}}</th>
 					{{projeto.total_preco_envio=total_preco_mercadoria}}
                      {{projeto.total_quant_pcs_envio=total_quant}}
+                     {{projeto.total_preco_retorno=retorno}}
                     {{projeto.update_record()}}
               </tr>
             </tbody>

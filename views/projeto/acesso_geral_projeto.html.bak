@@ -3,43 +3,75 @@
     Acesso Geral ao Projeto de venda {{=projeto.nome}}
 </p>
 <div>
-    
+    {{vistareal=0}}
 <ul>
     <p>
         Dados da Viagem
     </p>
     <li><a href="{{=URL('mercadoria','listar_merc', args=projeto.id)}}" class="text-dark">Mercadoria da Viagem <br>
-        (+)<b>R$ {{=projeto.total_preco_envio}}0</b> </a></li>
-    
+        (+) <b>R$ {{=projeto.total_preco_envio}}0</b> </a></li><hr>
+{{diferenca=projeto.total_preco_envio}}
     <li><a href="{{=URL('equipe','listar_vendedor', args=projeto.id)}}" class="text-dark">Venda à Praso <br>
-        (-) R$ {{=projeto.total_venda}}0</a></li>    
-    <li><a>Estoque/Retorno</a></li>    
-    <li><a>Venda à Vista</a></li>
-    
+        (-) <b>R$ {{=projeto.total_venda}}0</b></a></li><hr>
+    {{diferenca-=projeto.total_venda}}
+    <li><a href="{{=URL('mercadoria','listar_retorno', args=projeto.id)}}" class="text-dark">Estoque/Retorno<br>
+        (-) <b>R$ {{=projeto.total_preco_retorno}}0</b></a></li><hr>
+    {{diferenca-=projeto.total_preco_retorno}}
+     {{if diferenca>0:}}
+      <li>Diferênça/ à vista Real<br>{{vistareal=diferenca/2}}
+        (=) <b>R$ {{=diferenca}}0 / 2 = {{=vistareal}}</b></li><hr>
+    {{else:}}
+    <li>Diferênça<br>
+        (Atualizar Estoque!!) </li><hr>
+    {{pass}}
+    <li><a href="{{=URL('equipe','listar_vendedor', args=projeto.id)}}" class="text-dark">À Vista Contabilizado<br>
+        (-) <b>R$ {{=projeto.total_venda_vista}}0</b></a></li><hr>
+    {{diferenca=vistareal-projeto.total_venda_vista}}
+    {{if diferenca>0:}}
+    <p>
+        Faltando - R$ {{=diferenca}}0 <br>
+    </p>
+    {{else:}}
+     <p  class="text-danger">
+        Você precisa verificar os dados<br> da mercadoria e vendas 
+         a venda <br>à vista calculada não pode ser maior <br>que a venda à vista contabilizada
+    </p>
+    {{pass}}
+<hr>
 </ul>
 </div>
 <div>
     <p>
         Dinheiro da Viagem
     </p>
-    <ul>
-        <li><a>Adiantamento</a></li>
-        <li><a>Entradas</a></li>
-        <li><a>Venda à Vista</a></li>
-        <li>Total = </li>
+    <ul>{{dinh_rreal=0.0}}
+        <li><a href="{{=URL('projeto','alterar_projeto', args=projeto.id)}}" class="text-dark">Adiantamento<br>
+        (-) <b>R$ {{=projeto.adiantamento_dinh_venda}}0</b></a></li>{{dinh_rreal+=projeto.adiantamento_dinh_venda}}<hr>
+         <li><a href="{{=URL('equipe','listar_vendedor', args=projeto.id)}}" class="text-dark">Entradas<br>
+        (-) <b>R$ {{=projeto.total_entradas_venda}}0</b></a></li>{{dinh_rreal+=projeto.total_entradas_venda}}<hr>
+        <li>À vista Real<br>
+            {{if vistareal>0:}}
+        (-) <b>R$ {{=vistareal}}0</b></li>{{dinh_rreal+=vistareal}}<hr>
+        {{else:}}
+        (-) <b>ERRO</b></li>{{dinh_rreal+=vistareal}}<hr>
+    {{pass}}
+        <li>Total = <b>{{=dinh_rreal}}</b></li><hr>
     </ul>
 </div>
 <div>
     <p>
         Dinheiro Apresentado
     </p>
-    <ul>
-        <li><a>Despesas</a></li>
-        <li><a>Caderno Vendedores</a></li>
-        <li><a>Caderno Funcionarios</a></li>
-        <li>Dinheiro em Caixa</li>
+    <ul>{{dinhpres=0.0}}
+        <li><a href="{{=URL('despesa','listar_despesas', args=projeto.id)}}" class="text-dark">Despesas<br>
+        (-) <b>R$ {{=projeto.total_valor_depesa_venda}}0</b></a></li><hr>{{dinhpres+=projeto.total_valor_depesa_venda}}
+        <li><a href="{{=URL('equipe','listar_vendedor', args=projeto.id)}}" class="text-dark">Caderno Vendedores <br>
+        (-) <b>R$ {{=projeto.total_vale_caderno_vendedor}}0</b></a></li><hr>{{dinhpres+=projeto.total_vale_caderno_vendedor}}
+         <li><a href="{{=URL('equipe','listar_funcionarios', args=projeto.id)}}" class="text-dark">Caderno Funcionarios <br>
+        (-) <b>R$ {{=projeto.total_vale_caderno_funcionario}}0</b></a></li><hr>{{dinhpres+=projeto.total_vale_caderno_funcionario}}
         
-        <li>Total - </li>
+        
+        <li>Total -  R$ {{=dinhpres}}0</li><hr>
     </ul>
 </div>
 <div>
@@ -47,10 +79,15 @@
        Comissão do Chefe
     </p>
     <ul>
-        <li><a>Venda </a></li>
-        <li><a>Comissão</a></li>
-        <li><a>Diferença</a></li>
+        <li><a href="{{=URL('equipe','listar_vendedor', args=projeto.id)}}" class="text-dark">Venda à Praso <br>
+        (-) <b>R$ {{=projeto.total_venda}}0</b></a></li><hr>
+        <li><a href="{{=URL('equipe','alterar_comissao', args=projeto.id)}}" class="text-dark">Comissao <br>
+            {{comiss=projeto.total_venda*projeto.comissao_chefe_venda/100}}
+        (-) <b>R$ {{=comiss}}0</b></a></li><hr>
+        {{diferecaa=dinh_rreal-dinhpres}}
         
-        <li>Total - </li>
+        <li><a>Diferença R$ {{=diferecaa}}</a></li><hr>
+        
+        <li>Total - </li><hr>
     </ul>
 </div>

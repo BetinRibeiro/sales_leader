@@ -1,5 +1,8 @@
 {{extend 'layout.html'}}
 <p>Vendas de - {{=vendedor.nome_vendedor}}</p><br>
+<a class="btn btn-primary" href="{{=URL('listar_vendedor', args=vendedor.projeto)}}">Voltar</a>
+<a class="btn btn-primary" href="{{=URL('alterar_vendedor', args=vendedor.id)}}">Alterar Vendedor</a>
+
 <a class="btn btn-primary" href="{{=URL('inserir_venda', args=vendedor.id)}}">Inserir Venda</a><br><br>
 <div class="table-responsive">
 	<table class="table table-striped table-borderless">
@@ -28,13 +31,13 @@
 	                <th>{{=row.quant_fichas}}</th>
 	                  <th>{{=row.entradas_venda}}</th>
 	                  <th>{{=row.vendapraso}}</th>
-	                <th>{{=row.vendaavista}}</th> 
-	<th>
+	                <th>{{=row.vendavista}}</th> 
+	
 	                  {{caderno+=row.vale_caderno}}
 	                {{fichas+=row.quant_fichas}}
 	                {{entradas+=row.entradas_venda}}
                      {{venda+=row.vendapraso}}
-	                {{avista+=row.vendaavista}}
+	                {{avista+=row.vendavista}}
 	              </tr>
 	              {{pass}}
 					 <tr>
@@ -42,9 +45,21 @@
 	                 <th>{{=caderno}}</th>
 	                 <th>{{=fichas}}</th>
 	                 <th>{{=entradas}}</th>
+                         
 	                 <th>{{=venda}}</th>
 	                 <th>{{=avista}}</th>
 	                     
 	              </tr>
 	            </tbody>
 	          </table>
+{{vendedor.vale_caderno=caderno}}
+    
+	{{vendedor.quant_fichas=fichas}}
+    
+	{{vendedor.entradas_venda=entradas}}
+    
+	{{vendedor.vendapraso=venda}}
+    
+	{{vendedor.vendavista=avista}}
+    
+	                        {{vendedor.update_record()}}
