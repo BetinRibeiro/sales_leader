@@ -22,10 +22,10 @@
               <tr>
                 <th><a href="{{=URL('alterar_funcionaro', args=row.id)}}">{{=row.nome_funcionario}}</a></th>
 				<th>{{=row.funcao}}</th>
-                  <th>{{=row.salario_funcionario}}</th>
-                  <th>{{=row.vale_saida_funcionario}}</th>
-                  <th>{{=row.vale_caderno_funcionario}}</th>
-                  <th>{{=row.salario_funcionario-row.vale_saida_funcionario-row.vale_caderno_funcionario}}</th>
+                  <th>R$ {{="{:,}".format(row.salario_funcionario).replace(",",".")}}0</th>
+                  <th>R$ {{="{:,}".format(row.vale_saida_funcionario).replace(",",".")}}0</th>
+                  <th>R$ {{="{:,}".format(row.vale_caderno_funcionario).replace(",",".")}}0</th>
+                  <th>R$ {{="{:,}".format(row.salario_funcionario-row.vale_saida_funcionario-row.vale_caderno_funcionario).replace(",",".")}}0</th>
 				{{salario+=row.salario_funcionario}}
                 {{vale+=row.vale_saida_funcionario}}
                 {{caderno+=row.vale_caderno_funcionario}}
@@ -34,9 +34,9 @@
 				 <tr>
                 <th>Total</th>
                         <th>-></th>
-				<th>{{=salario}}</th>
-                     <th>{{=vale}}</th>
-                     <th>{{=caderno}}</th>
+				<th>R$ {{="{:,}".format(salario).replace(",",".")}}0</th>
+                     <th>R$ {{="{:,}".format(vale).replace(",",".")}}0</th>
+                     <th>R$ {{="{:,}".format(caderno).replace(",",".")}}0</th>
                      <th>-></th>
               </tr>
             </tbody>

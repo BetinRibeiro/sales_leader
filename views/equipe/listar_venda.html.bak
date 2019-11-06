@@ -1,7 +1,7 @@
 {{extend 'layout.html'}}
 <p>Vendas de - {{=vendedor.nome_vendedor}}</p><br>
 <a class="btn btn-primary" href="{{=URL('listar_vendedor', args=vendedor.projeto)}}">Voltar</a>
-<a class="btn btn-primary" href="{{=URL('alterar_vendedor', args=vendedor.id)}}">Voltar</a>
+<a class="btn btn-primary" href="{{=URL('alterar_vendedor', args=vendedor.id)}}">Alterar Vendedor</a>
 
 <a class="btn btn-primary" href="{{=URL('inserir_venda', args=vendedor.id)}}">Inserir Venda</a><br><br>
 <div class="table-responsive">
@@ -27,11 +27,11 @@
 					{{for row in rows:}}
 	              <tr> 
 	                  <th><a href="{{=URL('alterar_venda', args=row.id)}}">{{=row.data_venda}}</a></th>
-                      <th>{{=row.vale_caderno}}</th> 
+                      <th>R$ {{="{:,}".format(row.vale_caderno).replace(",",".")}}0</th> 
 	                <th>{{=row.quant_fichas}}</th>
-	                  <th>{{=row.entradas_venda}}</th>
-	                  <th>{{=row.vendapraso}}</th>
-	                <th>{{=row.vendavista}}</th> 
+	                  <th>R$ {{="{:,}".format(row.entradas_venda).replace(",",".")}}0</th>
+	                  <th>R$ {{="{:,}".format(row.vendapraso).replace(",",".")}}0</th>
+	                <th>R$ {{="{:,}".format(row.vendavista).replace(",",".")}}0</th> 
 	
 	                  {{caderno+=row.vale_caderno}}
 	                {{fichas+=row.quant_fichas}}
@@ -42,12 +42,12 @@
 	              {{pass}}
 					 <tr>
 	                 <th>Total</th>
-	                 <th>{{=caderno}}</th>
+	                 <th>R$ {{="{:,}".format(caderno).replace(",",".")}}0</th>
 	                 <th>{{=fichas}}</th>
-	                 <th>{{=entradas}}</th>
+	                 <th>R$ {{="{:,}".format(entradas).replace(",",".")}}0</th>
                          
-	                 <th>{{=venda}}</th>
-	                 <th>{{=avista}}</th>
+	                 <th>R$ {{="{:,}".format(venda).replace(",",".")}}0</th>
+	                 <th>R$ {{="{:,}".format(avista).replace(",",".")}}0</th>
 	                     
 	              </tr>
 	            </tbody>

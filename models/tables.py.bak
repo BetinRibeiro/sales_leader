@@ -74,13 +74,13 @@ db.define_table('vendedor',
                 Field('vendavista', 'double', writable=False, readable=False, notnull=True, default=0),
 				Field('entradas_venda', 'double', writable=False, readable=False, notnull=True, default=0),
 				Field('quant_fichas', 'integer', writable=False, readable=False, notnull=True, default=0),
-				Field('comissao_venda', 'double', writable=False, readable=False, notnull=True, default=7),
+				Field('comissao_venda', 'double',label='% Comissão', notnull=True, default=7),
 				auth.signature)
 
 
 db.define_table('venda',
 				Field('vendedor','reference vendedor', label='Vendedor', writable=True, readable=True),
-                Field('data_venda', 'date', label="Data"),
+                Field('data_venda', 'date', label="Data", default=request.now, requires = IS_DATE(format=('%d-%m-%Y'))),
 				Field('vale_caderno', 'double', notnull=True, default=0),
 				Field('quant_fichas', 'integer', notnull=True, default=0),
 				Field('vendapraso', 'double', notnull=True, default=0),

@@ -1,10 +1,6 @@
 {{extend 'layout.html'}}
-
-
-   
-            <h3>Lista dos Projetos de Venda</h3>
-            <a class="btn btn-secondary btn-success"
-            href="{{=URL('criar_projeto')}}">Criar Projeto</a>
+<h3>Lista dos Projetos de Venda</h3>
+<a class="btn btn-secondary btn-success" href="{{=URL('criar_projeto')}}">Criar Projeto</a>
             <br>{{for row in rows:}} {{pass}}
 <div class="table-responsive">
            <table class="table table-striped table-borderless ">

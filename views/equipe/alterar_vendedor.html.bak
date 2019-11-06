@@ -1,3 +1,4 @@
 {{extend 'layout.html'}}
-<h1>Este é o template equipe/alterar_vendedor.html</h1>
-{{=BEAUTIFY(response._vars)}}
+
+<h3>Alterar dados de {{=vendedor.nome_vendedor}}</h3> 
+<div class="col-md-8">{{=form}}</div>

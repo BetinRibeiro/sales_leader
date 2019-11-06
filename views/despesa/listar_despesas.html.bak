@@ -16,16 +16,16 @@
 				{{for row in rows:}}
               <tr>
                 <th><a href="{{=URL('alterar_desp', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.valor}}</th>
+				<th>R$ {{="{:,}".format(row.valor).replace(",",".")}}0</th>
 				  {{a=a+row.valor}}
               </tr>
               {{pass}}
 				 <tr>
                 <th>Total</th>
-				<th>{{=a}}</th>
+				<th>R$ {{="{:,}".format(=a).replace(",",".")}}0</th>
               </tr>
             </tbody>
           </table>
-            </div></div></div> {{projeto.total_valor_depesa_local=a}}
+            </div></div></div> {{projeto.total_valor_depesa_venda=a}}
                     {{projeto.update_record()}}
     </div>

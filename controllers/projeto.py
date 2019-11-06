@@ -30,7 +30,7 @@ def alterar_projeto():
     form = SQLFORM(db.projeto, request.args(0, cast=int))
     if form.process().accepted:
         session.flash = 'Filme atualizado'
-        redirect(URL('listar_projetos'))
+        redirect(URL('acesso_geral_projeto', args=projeto.id))
     elif form.errors:
         response.flash = 'Erros no formulário!'
     else:
@@ -40,4 +40,38 @@ def alterar_projeto():
 
 def acesso_geral_projeto():
     projeto = db.projeto(request.args(0, cast=int))
+    return locals()
+
+def alterar_vale_saida():
+    projeto = db.projeto(request.args(0, cast=int))
+
+    db.projeto.id.readable = False
+    db.projeto.id.writable = False
+    
+    db.projeto.nome.readable = True
+    db.projeto.nome.writable = False
+
+    db.projeto.nome_chefe.readable = True
+    db.projeto.nome_chefe.writable = False
+
+    db.projeto.primeira_cidade.readable = True
+    db.projeto.primeira_cidade.writable = False
+
+    db.projeto.adiantamento_dinh_venda.readable = True
+    db.projeto.adiantamento_dinh_venda.writable = False
+
+    db.projeto.data_saida_venda.readable = True
+    db.projeto.data_saida_venda.writable = False
+
+    db.projeto.data_cobranca.readable = True
+    db.projeto.data_cobranca.writable = False
+    form = SQLFORM(db.projeto, request.args(0, cast=int))
+    if form.process().accepted:
+        session.flash = 'Filme atualizado'
+        redirect(URL('acesso_geral_projeto', args=projeto.id))
+    elif form.errors:
+        response.flash = 'Erros no formulário!'
+    else:
+        if not response.flash:
+            response.flash = 'Preencha o formulário!'
     return locals()

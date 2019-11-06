@@ -1,3 +1,4 @@
 {{extend 'layout.html'}}
-<h1>Este é o template despesa/inserir_desp.html</h1>
-{{=BEAUTIFY(response._vars)}}
+
+ <p>Inserir Despesa</p> 
+          <div class="col-md-8">{{=form}}</div>

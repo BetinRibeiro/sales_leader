@@ -9,8 +9,6 @@ db.define_table('projeto',
                 Field('comissao_chefe_venda', 'double',  label="% Comissao Ven Chefe",notnull=True, default=3),
                 Field('data_saida_venda', 'date', label="Data Saida Venda"),
                 Field('data_cobranca', 'date', label="Data Cobrança"),
-                #info_chegada_Venda
-				Field('devolucao_dinh_venda', 'double', label="Devol Dinh Venda",notnull=True, default=0),
                 
 				Field('total_valor_depesa_venda', 'double', writable=False, readable=False, notnull=True, default=0),
                 
@@ -80,7 +78,7 @@ db.define_table('vendedor',
 
 db.define_table('venda',
 				Field('vendedor','reference vendedor', label='Vendedor', writable=True, readable=True),
-                Field('data_venda', 'date', label="Data"),
+                Field('data_venda', 'date', label="Data", default=request.now, requires = IS_DATE(format=('%d-%m-%Y'))),
 				Field('vale_caderno', 'double', notnull=True, default=0),
 				Field('quant_fichas', 'integer', notnull=True, default=0),
 				Field('vendapraso', 'double', notnull=True, default=0),

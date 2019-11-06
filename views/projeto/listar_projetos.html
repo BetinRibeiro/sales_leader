@@ -22,7 +22,7 @@
 						<td>{{=row.nome_chefe}}</td>
 						<td>{{=row.primeira_cidade}}</td>
 						<td>R$ {{=row.total_venda}}0</td>
-						<td>{{=row.data_cobranca}}</td>
+                          <td>{{=("{}/{}/{}".format(row.data_cobranca.day,row.data_cobranca.month,row.data_cobranca.year))}}</td>
 						<td><a href="{{=URL('alterar_projeto', args=row.id)}}">Alterar</a></td>
 					  </tr>
 					  {{pass}}
