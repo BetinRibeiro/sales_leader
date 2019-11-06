@@ -253,3 +253,17 @@
 [2019-11-01 20:35:17] EDIT sales_leader/views/mercadoria/listar_merc.html: 1
 [2019-11-01 20:44:03] EDIT sales_leader/controllers/equipe.py: 0
 [2019-11-01 20:44:12] EDIT sales_leader/controllers/equipe.py: 0
+[2019-11-06 01:21:36] EDIT sales_leader/views/projeto/acesso_geral_projeto.html: 1
+[2019-11-06 01:24:13] EDIT sales_leader/views/projeto/acesso_geral_projeto.html: 5
+[2019-11-06 01:24:45] EDIT sales_leader/views/projeto/acesso_geral_projeto.html: 0
+[2019-11-06 01:27:57] EDIT sales_leader/views/projeto/acesso_geral_projeto.html: 4
+[2019-11-06 01:28:01] EDIT sales_leader/views/projeto/acesso_geral_projeto.html: 0
+[2019-11-06 01:29:05] EDIT sales_leader/views/projeto/acesso_geral_projeto.html: 3
+[2019-11-06 01:29:20] EDIT sales_leader/views/projeto/acesso_geral_projeto.html: 1
+[2019-11-06 01:31:09] EDIT sales_leader/views/mercadoria/listar_retorno.html: 0
+[2019-11-06 01:33:19] EDIT sales_leader/views/mercadoria/listar_retorno.html: 0
+[2019-11-06 01:34:25] EDIT sales_leader/views/mercadoria/listar_merc.html: 0
+[2019-11-06 01:34:57] EDIT sales_leader/views/mercadoria/listar_merc.html: 0
+[2019-11-06 01:40:57] EDIT sales_leader/views/equipe/listar_vendedor.html: 0
+[2019-11-06 01:42:40] EDIT sales_leader/views/equipe/listar_vendedor.html: 0
+[2019-11-06 01:43:27] EDIT sales_leader/views/equipe/listar_vendedor.html: 0

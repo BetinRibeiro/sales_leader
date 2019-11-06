@@ -1,6 +1,7 @@
 {{extend 'layout.html'}}
 <p>Estoque da mercadoria {{=projeto.nome}}</p>
 
+<a class="btn btn-primary" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Relatorio</a>
 <div class="table-responsive">
   <table class="table table-striped table-borderless">
             <thead>
@@ -20,7 +21,7 @@
 
                 <th>{{=row.quant_pcs_retorno}}</th>
                   <th><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.preco_unitario}}0</th>
+				<th>R$ {{="{:,}".format(row.preco_unitario).replace(",",".")}}0</th>
                   
                     {{vr=row.quant_pcs_retorno*row.preco_unitario}}
                   

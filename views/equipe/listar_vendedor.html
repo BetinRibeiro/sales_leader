@@ -32,15 +32,15 @@
 	                  <th><a href="{{=URL('listar_venda', args=row.id)}}">{{=row.nome_vendedor}}</a></th>
                       {{totalavista+=row.vendavista}}
 	                <th>{{=row.quant_fichas}}</th>
-	                  <th>{{=row.entradas_venda}}</th>
-	                  <th>{{=row.vendapraso}}</th>
+	                  <th>R$ {{="{:,}".format(row.entradas_venda).replace(",",".")}}0</th>
+	                  <th>R$ {{="{:,}".format(row.vendapraso).replace(",",".")}}0</th>
                       {{if row.vendapraso>0:}}
 	                  {{comiss=row.vendapraso*row.comissao_venda/100}}
                       {{pass}}
-	                <th>{{=comiss}}</th> 
-	                  <th>{{=row.vale_saida}}</th>
-	                <th>{{=row.vale_caderno}}</th> 
-	                  <th>{{=comiss-(row.vale_saida)-(row.vale_caderno)}}</th>
+	                <th>R$ {{="{:,}".format(comiss).replace(",",".")}}0</th> 
+	                  <th>R$ {{="{:,}".format(row.vale_saida).replace(",",".")}}0</th>
+	                <th>R$ {{="{:,}".format(row.vale_caderno).replace(",",".")}}0</th> 
+	                  <th>R$ {{="{:,}".format(comiss-(row.vale_saida)-(row.vale_caderno)).replace(",",".")}}0</th>
 	<th>
 	                  {{totalfichas=totalfichas+row.quant_fichas}}
 	                   {{totalentrada=totalentrada+row.entradas_venda}}
@@ -53,11 +53,11 @@
 					 <tr>
 	                 <th>Total</th>
 	                 <th>{{=totalfichas}}</th>
-	                 <th>{{=totalentrada}}</th>
-	                 <th>{{=totalvenda}}</th>
-	                 <th>{{=totalcomissao}}</th>
-	                 <th>{{=totalvale}}</th>
-	                 <th>{{=totalcaderno}}</th>
+	                 <th>R$ {{="{:,}".format(totalentrada).replace(",",".")}}0</th>
+	                 <th>R$ {{="{:,}".format(totalvenda).replace(",",".")}}0</th>
+	                 <th>R$ {{="{:,}".format(totalcomissao).replace(",",".")}}0</th>
+	                 <th>R$ {{="{:,}".format(totalvale).replace(",",".")}}0</th>
+	                 <th>R$ {{="{:,}".format(totalcaderno).replace(",",".")}}0</th>
 	                 <th>--></th>
 	                     
 	              </tr>

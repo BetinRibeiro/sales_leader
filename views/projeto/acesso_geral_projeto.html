@@ -84,10 +84,25 @@
         <li><a href="{{=URL('equipe','alterar_comissao', args=projeto.id)}}" class="text-dark">Comissao <br>
             {{comiss=projeto.total_venda*projeto.comissao_chefe_venda/100}}
         (-) <b>R$ {{=comiss}}0</b></a></li><hr>
-        {{diferecaa=dinh_rreal-dinhpres}}{{saldo=comiss}}
-        <li><a>Vale Saida R$ {{=projeto.vale_saida_chefe}}</a></li><hr>
-        <li><a>Diferença R$ {{=diferecaa}}</a></li><hr>
         
-        <li>Saldo - R$ </li><hr>
+        {{diferecaa=dinh_rreal-dinhpres}}{{saldo=comiss}}
+        
+        <li><a>Vale Saida <br>
+            <b>R$ {{=projeto.vale_saida_chefe}}</b></a></li><hr>
+        {{if diferecaa>0:}}
+        <li><a>Diferença <br>
+            <b>R$ {{=diferecaa}}</b></a></li><hr>
+        {{else:}}
+        <li><a>Esta Sobrando Dinheiro</a></li><hr>
+        {{diferecaa=0.0}}
+        {{pass}}
+        {{saldo_chefe=comiss-projeto.vale_saida_chefe-diferecaa}}
+        {{if saldo_chefe>0:}}
+        <li>Saldo do Chefe- <br>
+            <b>R$ {{=saldo_chefe}}</b></li><hr>        
+        {{else:}}
+        <li>Ficará devendo - <br>
+            <b>R$ {{=saldo_chefe}}</b></li><hr>
+        {{pass}}
     </ul>
 </div>

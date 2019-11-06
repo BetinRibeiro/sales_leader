@@ -30,7 +30,7 @@
                   {{pass}}
                            {{retorno+=row.quant_pcs_retorno*row.preco_unitario}}                      
                   <th><a href="{{=URL('alterar_merc', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.preco_unitario}}</th>
+				<th>R$ {{="{:,}".format(row.preco_unitario).replace(",",".")}}0</th>
 				{{total_preco=row.quant_pcs_enviada*row.preco_unitario}}
                   {{total_preco_mercadoria+=total_preco}}
 				<th>{{=total_preco}}</th>
@@ -45,6 +45,7 @@
 				<th>{{=total_preco_mercadoria}}</th>
 					{{projeto.total_preco_envio=total_preco_mercadoria}}
                      {{projeto.total_quant_pcs_envio=total_quant}}
+                     {{projeto.total_preco_retorno=retorno}}
                     {{projeto.update_record()}}
               </tr>
             </tbody>

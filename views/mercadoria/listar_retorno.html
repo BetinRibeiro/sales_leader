@@ -21,11 +21,11 @@
 
                 <th>{{=row.quant_pcs_retorno}}</th>
                   <th><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.preco_unitario}}0</th>
+				<th>R$ {{="{:,}".format(row.preco_unitario).replace(",",".")}}0</th>
                   
                     {{vr=row.quant_pcs_retorno*row.preco_unitario}}
                   
-				<th>{{=vr}}0</th>
+				<th>R$ {{="{:,}".format(vr).replace(",",".")}}0</th>
                   
                     {{total_preco_retorno=total_preco_retorno+vr}}
                     {{quant_retorno+=row.quant_pcs_retorno}}
@@ -36,7 +36,7 @@
                 <th>{{= quant_retorno }}0</th>
                      <th>Total</th>
                      <th>--></th>
-                     <th>{{=total_preco_retorno}}</th>
+                     <th>R$ {{="{:,}".format(total_preco_retorno).replace(",",".")}}0</th>
 
               </tr>
             </tbody>
